@@ -1,0 +1,223 @@
+I (91) esp_image: segment 0: paddr=00010020 vaddr=�ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce3810,len:0x1854
+load:0x403c9700,len:0x4
+load:0x403c9704,len:0xcc0
+load:0x403cc700,len:0x2ed4
+entry 0x403c9914
+I (27) boot: ESP-IDF v5.2.1-dirty 2nd stage bootloader
+I (27) boot: compile time Jun  3 2024 18:24:37
+I (27) boot: Multicore bootloader
+I (30) boot: chip revision: v0.2
+I (34) boot.esp32s3: Boot SPI Speed : 80MHz
+I (39) boot.esp32s3: SPI Mode       : DIO
+I (44) boot.esp32s3: SPI Flash Size : 16MB
+I (49) boot: Enabling RNG early entropy source...
+I (54) boot: Partition Table:
+I (58) boot: ## Label            Usage          Type ST Offset   Length
+I (65) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (72) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (80) boot:  2 factory          factory app      00 00 00010000 00100000
+I (87) boot: End of partition table
+I (91) esp_image: segment 0: paddr=00010020 vaddr=3c040020 size=483c0h (295872) map
+I (153) esp_image: segment 1: paddr=000583e8 vaddr=3fc92800 size=029e4h ( 10724) load
+I (155) esp_image: segment 2: paddr=0005add4 vaddr=40374000 size=05244h ( 21060) load
+I (163) esp_image: segment 3: paddr=00060020 vaddr=42000020 size=38c5ch (232540) map
+I (209) esp_image: segment 4: paddr=00098c84 vaddr=40379244 size=094e4h ( 38116) load
+I (223) boot: Loaded app from partition at offset 0x10000
+I (224) boot: Disabling RNG early entropy source...
+I (235) cpu_start: Multicore app
+D (235) cpu_start: Pro cpu up
+D (235) cpu_start: Starting app cpu, entry point is 0x40375228
+0x40375228: call_start_cpu1 at /data/local/fun/cscg/dhm-2024/challenges/flag-generator-extended/deploy/esp-idf/components/esp_system/port/cpu_start.c:183
+
+D (0) cpu_start: App cpu up
+D (245) clk: RTC_SLOW_CLK calibration value: 3608282
+I (256) cpu_start: Pro cpu start user code
+I (256) cpu_start: cpu freq: 160000000 Hz
+I (257) cpu_start: Application information:
+I (259) cpu_start: Project name:     flag-generator
+I (265) cpu_start: App version:      84c05e0
+I (270) cpu_start: Compile time:     Jul  3 2024 10:58:17
+I (276) cpu_start: ELF file SHA256:  8d5be8ea3...
+I (281) cpu_start: ESP-IDF:          v5.2.1-dirty
+I (287) cpu_start: Min chip rev:     v0.0
+I (292) cpu_start: Max chip rev:     v0.99
+I (296) cpu_start: Chip rev:         v0.2
+D (301) memory_layout: Checking 6 reserved memory ranges:
+D (307) memory_layout: Reserved memory range 0x3fc84000 - 0x3fc92800
+D (313) memory_layout: Reserved memory range 0x3fc92800 - 0x3fc98778
+D (319) memory_layout: Reserved memory range 0x3fceee34 - 0x3fcf0000
+D (326) memory_layout: Reserved memory range 0x40374000 - 0x40382800
+0x40374000: _WindowOverflow4 at /data/local/fun/cscg/dhm-2024/challenges/flag-generator-extended/deploy/esp-idf/components/xtensa/xtensa_vectors.S:2027
+
+D (332) memory_layout: Reserved memory range 0x600fe000 - 0x600fe010
+D (339) memory_layout: Reserved memory range 0x600fffd8 - 0x60100000
+D (345) memory_layout: Building list of available memory regions:
+D (351) memory_layout: Available memory region 0x3fc98778 - 0x3fca0000
+D (358) memory_layout: Available memory region 0x3fca0000 - 0x3fcb0000
+D (364) memory_layout: Available memory region 0x3fcb0000 - 0x3fcc0000
+D (371) memory_layout: Available memory region 0x3fcc0000 - 0x3fcd0000
+D (378) memory_layout: Available memory region 0x3fcd0000 - 0x3fce0000
+D (384) memory_layout: Available memory region 0x3fce0000 - 0x3fce9710
+D (391) memory_layout: Available memory region 0x3fce9710 - 0x3fceee34
+D (397) memory_layout: Available memory region 0x3fcf0000 - 0x3fcf8000
+D (404) memory_layout: Available memory region 0x600fe010 - 0x600fffd8
+I (411) heap_init: Initializing. RAM available for dynamic allocation:
+D (418) heap_init: New heap initialised at 0x3fc98778
+I (423) heap_init: At 3FC98778 len 00050F98 (323 KiB): RAM
+I (429) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+D (435) heap_init: New heap initialised at 0x3fcf0000
+I (440) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+D (446) heap_init: New heap initialised at 0x600fe010
+I (452) heap_init: At 600FE010 len 00001FC8 (7 KiB): RTCRAM
+D (458) intr_alloc: Connected src 39 to int 2 (cpu 0)
+D (464) spi_flash: trying chip: issi
+D (467) spi_flash: trying chip: gd
+D (470) spi_flash: trying chip: mxic
+D (474) spi_flash: trying chip: winbond
+D (478) spi_flash: trying chip: boya
+D (481) spi_flash: trying chip: th
+D (485) spi_flash: trying chip: mxic (opi)
+D (489) spi_flash: trying chip: generic
+I (493) spi_flash: detected chip: generic
+I (498) spi_flash: flash io: dio
+D (501) cpu_start: calling init function: 0x42027d3c
+0x42027d3c: _GLOBAL__sub_I__ZN9__gnu_cxx9__freeresEv at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/gcc/libstdc++-v3/libsupc++/eh_alloc.cc:462
+
+D (507) cpu_start: calling init function: 0x420277fc
+0x420277fc: _GLOBAL__sub_I__ZN17__eh_globals_init7_S_initE at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/gcc/libstdc++-v3/libsupc++/eh_globals.cc:162
+
+D (512) cpu_start: calling init function: 0x4201013c
+0x4201013c: esp_ipc_init at /data/local/fun/cscg/dhm-2024/challenges/flag-generator-extended/deploy/esp-idf/components/esp_system/esp_ipc.c:114
+
+D (517) cpu_start: calling init function: 0x403795c4
+0x403795c4: enable_timer_group0_for_calibration at /data/local/fun/cscg/dhm-2024/challenges/flag-generator-extended/deploy/esp-idf/components/esp_hw_support/port/esp32s3/rtc_time.c:199
+
+D (522) cpu_start: calling init function: 0x42003c58
+0x42003c58: __esp_stack_guard_setup at /data/local/fun/cscg/dhm-2024/challenges/flag-generator-extended/deploy/esp-idf/components/esp_system/stack_check.c:21
+
+D (527) stack_chk: Intialize random stack guard
+D (531) cpu_start: calling init function: 0x420029c0
+0x420029c0: esp_app_format_init_elf_sha256 at /data/local/fun/cscg/dhm-2024/challenges/flag-generator-extended/deploy/esp-idf/components/esp_app_format/esp_app_desc.c:68
+
+D (536) cpu_start: calling init function: 0x42007c10 on core: 0
+0x42007c10: __esp_system_init_fn_esp_timer_startup_init at /data/local/fun/cscg/dhm-2024/challenges/flag-generator-extended/deploy/esp-idf/components/esp_timer/src/esp_timer.c:578
+
+D (542) intr_alloc: Connected src 59 to int 3 (cpu 0)
+D (547) cpu_start: calling init function: 0x420056bc on core: 0
+0x420056bc: __esp_system_init_fn_esp_sleep_startup_init at /data/local/fun/cscg/dhm-2024/challenges/flag-generator-extended/deploy/esp-idf/components/esp_hw_support/sleep_gpio.c:189
+
+I (553) sleep: Configure to isolate all GPIO pins in sleep state
+I (560) sleep: Enable automatic switching of GPIO sleep configuration
+D (567) cpu_start: calling init function: 0x42003c4c on core: 0
+0x42003c4c: __esp_system_init_fn_init_components0 at /data/local/fun/cscg/dhm-2024/challenges/flag-generator-extended/deploy/esp-idf/components/esp_system/startup.c:493
+
+D (573) intr_alloc: Connected src 79 to int 9 (cpu 0)
+D (578) app_start: Starting scheduler on CPU0
+D (583) intr_alloc: Connected src 57 to int 12 (cpu 0)
+D (583) intr_alloc: Connected src 80 to int 2 (cpu 1)
+D (593) app_start: Starting scheduler on CPU1
+D (593) intr_alloc: Connected src 58 to int 3 (cpu 1)
+I (583) main_task: Started on CPU0
+D (603) heap_init: New heap initialised at 0x3fce9710
+D (603) intr_alloc: Connected src 52 to int 13 (cpu 0)
+I (613) main_task: Calling app_main()
+D (613) event: running task for loop 0x3fc9d660
+D (623) event: created task for loop 0x3fc9d660
+D (623) event: created event loop 0x3fc9d660
+D (633) esp_netif_lwip: LwIP stack has been initialized
+D (633) esp_netif_lwip: esp-netif has been successfully initialized
+I (643) usb: USB initialization
+W (643) tusb_desc: No Device descriptor provided, using default.
+W (653) tusb_desc: No FullSpeed configuration descriptor provided, using default.
+W (663) tusb_desc: No String descriptors provided, using default.
+I (663) tusb_desc:
+┌─────────────────────────────────┐
+│  USB Device Descriptor Summary  │
+├───────────────────┬─────────────┤
+│bDeviceClass       │ 0           │
+├───────────────────┼─────────────┤
+│bDeviceSubClass    │ 0           │
+├───────────────────┼─────────────┤
+│bDeviceProtocol    │ 0           │
+├───────────────────┼─────────────┤
+│bMaxPacketSize0    │ 64          │
+├───────────────────┼─────────────┤
+│idVendor           │ 0x303a      │
+├───────────────────┼─────────────┤
+│idProduct          │ 0x4000      │
+├───────────────────┼─────────────┤
+│bcdDevice          │ 0x100       │
+├───────────────────┼─────────────┤
+│iManufacturer      │ 0x1         │
+├───────────────────┼─────────────┤
+│iProduct           │ 0x2         │
+├───────────────────┼─────────────┤
+│iSerialNumber      │ 0x3         │
+├───────────────────┼─────────────┤
+│bNumConfigurations │ 0x1         │
+└───────────────────┴─────────────┘
+D (833) intr_alloc: Connected src 38 to int 17 (cpu 0)
+D (843) tusb_tsk: tinyusb task started
+I (843) TinyUSB: TinyUSB Driver installed
+D (853) esp_netif_lwip: check: remote, if=0x3fc9c2bc fn=0x42011f1c
+0x42011f1c: esp_netif_new_api at /data/local/fun/cscg/dhm-2024/challenges/flag-generator-extended/deploy/esp-idf/components/esp_netif/lwip/esp_netif_lwip.c:690
+
+D (853) esp_netif_objects: esp_netif_add_to_list_unsafe netif added successfully (total netifs: 1)
+D (863) esp_netif_lwip: call api in lwip: ret=0x0, give sem
+D (873) esp_netif_lwip: check: remote, if=0x3fca09d8 fn=0x42011ab4
+0x42011ab4: esp_netif_set_mac_api at /data/local/fun/cscg/dhm-2024/challenges/flag-generator-extended/deploy/esp-idf/components/esp_netif/lwip/esp_netif_lwip.c:993
+
+D (873) esp_netif_lwip: call api in lwip: ret=0x0, give sem
+D (883) esp_netif_handlers: esp_netif action has started with netif0x3fca09d8 from event_id=0
+D (893) esp_netif_lwip: check: remote, if=0x3fca09d8 fn=0x420121cc
+0x420121cc: esp_netif_start_api at /data/local/fun/cscg/dhm-2024/challenges/flag-generator-extended/deploy/esp-idf/components/esp_netif/lwip/esp_netif_lwip.c:1068
+
+D (893) esp_netif_lwip: esp_netif_start_api 0x3fca09d8
+D (903) esp_netif_lwip: esp_netif_internal_dhcpc_cb lwip-netif:0x3fca0a5c
+D (913) esp_netif_lwip: if0x3fca09d8 ip unchanged
+D (913) esp_netif_lwip: esp_netif_get_hostname esp_netif:0x3fca09d8
+D (923) esp_netif_lwip: esp_netif_start_api Setting the lwip netif0x3fca0a5c UP
+W (923) usb: Failed to send buffer to USB!
+I (933) esp_netif_lwip: DHCP server started on interface usb_eth with IP: 10.11.12.2
+D (943) esp_netif_lwip: check: local, if=0x3fca09d8 fn=0x42012568
+0x42012568: esp_netif_update_default_netif_lwip at /data/local/fun/cscg/dhm-2024/challenges/flag-generator-extended/deploy/esp-idf/components/esp_netif/lwip/esp_netif_lwip.c:316
+
+D (943) esp_netif_lwip: esp_netif_update_default_netif_lwip 0x3fca09d8
+D (953) esp_netif_lwip: call api in lwip: ret=0x0, give sem
+I (963) usb: USB initialization DONE
+I (963) webserver: Starting server on port: '80'
+D (973) httpd: httpd_thread: web server started
+D (973) httpd: httpd_server: doing select maxfd+1 = 56
+D (983) event: no handlers have been registered for event ESP_HTTP_SERVER_EVENT:1 posted to loop 0x3fc9d660
+I (983) webserver: Registering URI handlers
+D (993) httpd_uri: httpd_register_uri_handler: [0] installed /
+D (1003) httpd_uri: httpd_find_uri_handler: [0] = /
+D (1003) httpd_uri: httpd_register_uri_handler: [0] exists /
+D (1013) httpd_uri: httpd_register_uri_handler: [1] installed /decrypt
+D (1013) httpd_uri: httpd_find_uri_handler: [0] = /
+D (1023) httpd_uri: httpd_find_uri_handler: [1] = /decrypt
+D (1023) httpd_uri: httpd_register_uri_handler: [0] exists /
+D (1033) httpd_uri: httpd_register_uri_handler: [1] exists /decrypt
+D (1043) httpd_uri: httpd_register_uri_handler: [2] installed /simple.min.css
+D (1043) httpd_uri: httpd_find_uri_handler: [0] = /
+D (1053) httpd_uri: httpd_find_uri_handler: [1] = /decrypt
+D (1053) httpd_uri: httpd_find_uri_handler: [2] = /simple.min.css
+D (1063) httpd_uri: httpd_register_uri_handler: [0] exists /
+D (1073) httpd_uri: httpd_register_uri_handler: [1] exists /decrypt
+D (1073) httpd_uri: httpd_register_uri_handler: [2] exists /simple.min.css
+D (1083) httpd_uri: httpd_register_uri_handler: [3] installed /sha256.min.js
+D (1093) httpd_uri: httpd_find_uri_handler: [0] = /
+D (1093) httpd_uri: httpd_find_uri_handler: [1] = /decrypt
+D (1103) httpd_uri: httpd_find_uri_handler: [2] = /simple.min.css
+D (1103) httpd_uri: httpd_find_uri_handler: [3] = /sha256.min.js
+D (1113) httpd_uri: httpd_register_uri_handler: [0] exists /
+D (1113) httpd_uri: httpd_register_uri_handler: [1] exists /decrypt
+D (1123) httpd_uri: httpd_register_uri_handler: [2] exists /simple.min.css
+D (1133) httpd_uri: httpd_register_uri_handler: [3] exists /sha256.min.js
+D (1133) httpd_uri: httpd_register_uri_handler: [4] installed /favicon.ico
+I (1143) main_task: Returned from app_main()

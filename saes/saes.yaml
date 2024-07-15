@@ -1,0 +1,27 @@
+name: saes
+displayName: SAES
+
+tags: []
+authors:
+  - "Diff-fusion"
+categories:
+  - "Crypto"
+difficulty: Medium
+description: |
+  AES is not secure enough for me. So I added some more security sauce to get Secure AES!
+
+  This service demonstrates how much more secure SAES is.
+
+enabled: true
+multiplier: 1.0
+points: 100
+flag: "DHM{Ch4ng1ng_g00d_crypt0_c4nt_d0_4ny_h4rm__r1ght?}"
+
+broker: saes
+
+deployment:
+  containers:
+    - image: saes
+      build: True
+      buildRoot: deploy
+      dockerfile: Dockerfile

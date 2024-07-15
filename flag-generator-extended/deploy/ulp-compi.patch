@@ -1,0 +1,73 @@
+diff --git a/components/ulp/CMakeLists.txt b/components/ulp/CMakeLists.txt
+index 42b55d7b43..2f91c7e645 100644
+--- a/components/ulp/CMakeLists.txt
++++ b/components/ulp/CMakeLists.txt
+@@ -41,8 +41,9 @@ if(CONFIG_ULP_COPROC_TYPE_FSM OR CONFIG_ULP_COPROC_TYPE_RISCV)
+         list(APPEND srcs
+             "ulp_fsm/ulp.c"
+             "ulp_fsm/ulp_macro.c")
++    endif()
+ 
+-    elseif(CONFIG_ULP_COPROC_TYPE_RISCV)
++    if(CONFIG_ULP_COPROC_TYPE_RISCV)
+         list(APPEND srcs
+             "ulp_riscv/ulp_riscv.c"
+             "ulp_riscv/ulp_riscv_lock.c"
+diff --git a/components/ulp/Kconfig b/components/ulp/Kconfig
+index 9ed9c43006..c3f042e5a5 100644
+--- a/components/ulp/Kconfig
++++ b/components/ulp/Kconfig
+@@ -8,16 +8,13 @@ menu "Ultra Low Power (ULP) Co-processor"
+             Enable this feature if you plan to use the ULP Co-processor.
+             Once this option is enabled, further ULP co-processor configuration will appear in the menu.
+ 
+-    choice ULP_COPROC_TYPE
++    choice ULP_COPROC_TYPE1
+         prompt "ULP Co-processor type"
+         depends on ULP_COPROC_ENABLED
+         default ULP_COPROC_TYPE_RISCV if (IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3)
+         help
+             Choose the ULP Coprocessor type: ULP FSM (Finite State Machine) or ULP RISC-V.
+ 
+-        config ULP_COPROC_TYPE_FSM
+-            bool "ULP FSM (Finite State Machine)"
+-            depends on SOC_ULP_FSM_SUPPORTED
+         config ULP_COPROC_TYPE_RISCV
+             bool "ULP RISC-V"
+             depends on SOC_RISCV_COPROC_SUPPORTED
+@@ -26,6 +23,21 @@ menu "Ultra Low Power (ULP) Co-processor"
+             depends on SOC_LP_CORE_SUPPORTED
+     endchoice
+ 
++    choice ULP_COPROC_TYPE2
++        prompt "ULP Co-processor type"
++        depends on ULP_COPROC_ENABLED
++        default ULP_COPROC_TYPE_FSM if (IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3)
++        help
++            Choose the ULP Coprocessor type: ULP FSM (Finite State Machine) or ULP RISC-V.
++
++        config ULP_COPROC_TYPE_FSM
++            bool "ULP FSM (Finite State Machine)"
++            depends on SOC_ULP_FSM_SUPPORTED
++        config ULP_COPROC_TYPE_LP_CORE
++            bool "LP core RISC-V"
++            depends on SOC_LP_CORE_SUPPORTED
++    endchoice
++
+     config ULP_COPROC_RESERVE_MEM
+         int
+         prompt "RTC slow memory reserved for coprocessor"
+diff --git a/components/ulp/project_include.cmake b/components/ulp/project_include.cmake
+index 47df252e01..08c584b1b5 100644
+--- a/components/ulp/project_include.cmake
++++ b/components/ulp/project_include.cmake
+@@ -39,7 +39,8 @@ function(ulp_embed_binary app_name s_sources exp_dep_srcs)
+             set(TOOLCHAIN_FLAG ${idf_path}/components/ulp/cmake/toolchain-${idf_target}-ulp.cmake)
+             set(ULP_IS_RISCV OFF)
+         elseif(IDF_TARGET STREQUAL "esp32s2" OR IDF_TARGET STREQUAL "esp32s3")
+-            if(CONFIG_ULP_COPROC_TYPE_RISCV STREQUAL "y")
++            #if(CONFIG_ULP_COPROC_TYPE_RISCV STREQUAL "y")
++            if(${app_name} MATCHES "riscv")
+                 set(TOOLCHAIN_FLAG ${idf_path}/components/ulp/cmake/toolchain-ulp-riscv.cmake)
+                 set(ULP_IS_RISCV ON)
+             else()

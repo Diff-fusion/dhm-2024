@@ -1,0 +1,6 @@
+__pycache__
+esp-idf
+challenge/.cache
+challenge/build
+challenge/managed_components
+challenge/sdkconfig.old

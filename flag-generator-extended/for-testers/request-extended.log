@@ -1,0 +1,125 @@
+D (449133) httpd: httpd_process_session: processing socket 57
+D (449143) httpd_sess: httpd_sess_process: httpd_req_new
+D (449153) httpd_txrx: httpd_recv_with_opt: requested length = 128
+D (449163) httpd_txrx: httpd_recv_with_opt: received length = 128
+D (449163) httpd_parse: read_block: received HTTP request block size = 128
+D (449173) httpd_parse: cb_url: message begin
+D (449173) httpd_parse: cb_url: processing url = /decrypt?type=extended&key=AAAAAAAAAAAAAAAAAAAAAA%3D%3D&iv=GtkiljlhRIxzQ6mVO5yTyg%3D%3D
+D (449193) httpd_parse: verify_url: received URI = /decrypt?type=extended&key=AAAAAAAAAAAAAAAAAAAAAA%3D%3D&iv=GtkiljlhRIxzQ6mVO5yTyg%3D%3D
+D (449203) httpd_parse: cb_header_field: headers begin
+D (449203) httpd_txrx: httpd_unrecv: length = 25
+D (449213) httpd_parse: pause_parsing: paused
+D (449213) httpd_parse: cb_header_field: processing field = Host
+D (449223) httpd_txrx: httpd_recv_with_opt: requested length = 128
+D (449233) httpd_txrx: httpd_recv_with_opt: pending length = 25
+D (449233) httpd_parse: read_block: received HTTP request block size = 25
+D (449243) httpd_parse: continue_parsing: skip pre-parsed data of size = 5
+D (449253) httpd_parse: continue_parsing: un-paused
+D (449253) httpd_parse: cb_header_value: processing value = 10.11.12.2
+D (449263) httpd_parse: cb_header_field: processing field = User-Ag
+D (449263) httpd_parse: parse_block: parsed block size = 25
+D (449273) httpd_txrx: httpd_recv_with_opt: requested length = 128
+D (449283) httpd_txrx: httpd_recv_with_opt: received length = 128
+D (449283) httpd_parse: read_block: received HTTP request block size = 128
+D (449293) httpd_parse: cb_header_field: processing field = ent
+D (449293) httpd_parse: cb_header_value: processing value = Mozilla/5.0 (X11; Linux x86_64; rv:127.0) Gecko/20100101 Firefox/127.0
+D (449313) httpd_parse: cb_header_field: processing field = Accept
+D (449313) httpd_parse: cb_header_value: processing value = */*
+D (449323) httpd_parse: cb_header_field: processing field = Accept-Language
+D (449333) httpd_parse: cb_header_value: processing value = en-US,en;q=0.5
+D (449333) httpd_parse: cb_header_field: processing field = Accep
+D (449343) httpd_parse: parse_block: parsed block size = 153
+D (449343) httpd_txrx: httpd_recv_with_opt: requested length = 128
+D (449353) httpd_txrx: httpd_recv_with_opt: received length = 128
+D (449363) httpd_parse: read_block: received HTTP request block size = 128
+D (449363) httpd_parse: cb_header_field: processing field = t-Encoding
+D (449373) httpd_parse: cb_header_value: processing value = gzip, deflate
+D (449383) httpd_parse: cb_header_field: processing field = Referer
+D (449383) httpd_parse: cb_header_value: processing value = http://10.11.12.2/
+D (449393) httpd_parse: cb_header_field: processing field = Content-Type
+D (449403) httpd_parse: cb_header_value: processing value = application/octet-stream
+D (449413) httpd_parse: cb_header_field: processing field = Content-Length
+D (449413) httpd_parse: cb_header_value: processing value = 160
+D (449423) httpd_parse: cb_header_field: processing field = Origin
+D (449423) httpd_parse: cb_header_value: processing value = htt
+D (449433) httpd_parse: parse_block: parsed block size = 281
+D (449443) httpd_txrx: httpd_recv_with_opt: requested length = 128
+D (449443) httpd_txrx: httpd_recv_with_opt: received length = 128
+D (449453) httpd_parse: read_block: received HTTP request block size = 128
+D (449463) httpd_parse: cb_header_value: processing value = p://10.11.12.2
+D (449463) httpd_parse: cb_header_field: processing field = DNT
+D (449473) httpd_parse: cb_header_value: processing value = 1
+D (449473) httpd_parse: cb_header_field: processing field = Connection
+D (449483) httpd_parse: cb_header_value: processing value = keep-alive
+D (449493) httpd_parse: cb_header_field: processing field = Priority
+D (449493) httpd_parse: cb_header_value: processing value = u=1
+D (449503) httpd_parse: cb_headers_complete: bytes read     = 452
+D (449513) httpd_parse: cb_headers_complete: content length = 160
+D (449513) event: no handlers have been registered for event ESP_HTTP_SERVER_EVENT:3 posted to loop 0x3fc9d660
+D (449513) httpd_txrx: httpd_unrecv: length = 63
+D (449533) httpd_parse: pause_parsing: paused
+D (449533) httpd_parse: cb_on_body: body begins
+D (449543) httpd_parse: httpd_parse_req: parsing complete
+D (449543) httpd_uri: httpd_uri: request for /decrypt?type=extended&key=AAAAAAAAAAAAAAAAAAAAAA%3D%3D&iv=GtkiljlhRIxzQ6mVO5yTyg%3D%3D with type 3
+D (449553) httpd_uri: httpd_find_uri_handler: [0] = /
+D (449563) httpd_uri: httpd_find_uri_handler: [1] = /decrypt
+D (449573) httpd_txrx: httpd_req_recv: remaining length = 160
+D (449573) httpd_txrx: httpd_recv_with_opt: requested length = 160
+D (449583) httpd_txrx: httpd_recv_with_opt: pending length = 63
+D (449583) httpd_txrx: httpd_recv_with_opt: received length = 160
+D (449593) httpd_txrx: httpd_req_recv: received length = 160
+D (449603) webserver: Successfully received decryption request
+D (449603) event: no handlers have been registered for event ESP_HTTP_SERVER_EVENT:5 posted to loop 0x3fc9d660
+D (449603) webserver: Type: extended
+D (449613) webserver: Key:
+D (449623) webserver: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+D (449623) webserver: IV:
+D (449633) webserver: 1a d9 22 96 39 61 44 8c 73 43 a9 95 3b 9c 93 ca
+D (449633) webserver: Data:
+D (449643) webserver: 0x3fc9bc28   23 9f c3 7a 23 0c d5 61  a8 83 4d 83 de 15 9e 09  |#..z#..a..M.....|
+D (449653) webserver: 0x3fc9bc38   77 10 d1 1c 79 5d 40 c0  d7 f1 3c 0a c9 95 db 0d  |w...y]@...<.....|
+D (449663) webserver: 0x3fc9bc48   c0 d4 61 ba 99 43 58 e1  95 99 49 68 bf ed 5a 3d  |..a..CX...Ih..Z=|
+D (449663) webserver: 0x3fc9bc58   dd 07 55 cc 83 43 c5 2f  1f 4c 10 f6 75 ed 34 6f  |..U..C./.L..u.4o|
+D (449673) webserver: 0x3fc9bc68   dd 6e 08 d3 a3 91 09 78  4a 26 7a aa 9b c7 6e cb  |.n.....xJ&z...n.|
+D (449683) webserver: 0x3fc9bc78   62 8a f0 8d 66 37 3e 71  dc bc 0a 66 f0 6e 1c 6e  |b...f7>q...f.n.n|
+D (449693) webserver: 0x3fc9bc88   44 06 e7 fa d3 3f 01 39  ee ba a8 9c 9c 0a 5a 58  |D....?.9......ZX|
+D (449703) webserver: 0x3fc9bc98   ee f3 77 cb c7 aa da e3  e8 fa 19 fd 1e 02 01 13  |..w.............|
+D (449713) webserver: 0x3fc9bca8   e0 72 39 7d 77 89 03 91  7c 71 1c f6 d0 72 f6 b9  |.r9}w...|q...r..|
+D (449723) webserver: 0x3fc9bcb8   61 12 50 c1 ab 21 c7 88  b9 55 7f cd d5 07 e3 12  |a.P..!...U......|
+I (449733) webserver: Starting decryption of type `extended`
+I (449743) webserver: Decryption done!
+D (449743) webserver: Decrypted data:
+D (449753) webserver: 0x3fc9bc28   11 36 7a 65 4a 50 e7 92  40 af df af ba d3 71 bc  |.6zeJP..@.....q.|
+D (449763) webserver: 0x3fc9bc38   8c c8 d4 cd be 4f f6 ee  b8 d9 41 ea c9 1c d2 ea  |.....O....A.....|
+D (449763) webserver: 0x3fc9bc48   fa 68 d6 9a 94 00 93 82  a4 72 5b 08 16 0b ea b2  |.h.......r[.....|
+D (449773) webserver: 0x3fc9bc58   1e d3 d6 62 a8 36 98 3d  78 dd b3 97 e4 8d ea ec  |...b.6.=x.......|
+D (449783) webserver: 0x3fc9bc68   30 4b c0 64 8d 3b 76 dd  c6 3a ed b8 77 cd e9 51  |0K.d.;v..:..w..Q|
+D (449793) webserver: 0x3fc9bc78   57 82 80 03 f2 d4 f3 ad  7b 60 17 68 a4 68 f9 24  |W.......{`.h.h.$|
+D (449803) webserver: 0x3fc9bc88   ef 43 f8 7f cf 6d 50 19  fd 0c 8c 6a 9f 4b 32 39  |.C...mP....j.K29|
+D (449813) webserver: 0x3fc9bc98   7c fa 72 01 ec 74 a7 54  ee 39 65 50 81 74 b1 02  ||.r..t.T.9eP.t..|
+D (449823) webserver: 0x3fc9bca8   b1 1b 93 3e da cc 52 3d  12 1c 14 15 99 c2 93 e8  |...>..R=........|
+D (449833) webserver: 0x3fc9bcb8   46 1d 80 ca a7 74 17 e0  98 c6 8f 38 66 0a 16 69  |F....t.....8f..i|
+D (449843) httpd_txrx: httpd_send_all: sent = 78
+D (449853) httpd_txrx: httpd_send_all: sent = 2
+D (449853) event: no handlers have been registered for event ESP_HTTP_SERVER_EVENT:4 posted to loop 0x3fc9d660
+D (449863) httpd_txrx: httpd_send_all: sent = 160
+D (449863) event: no handlers have been registered for event ESP_HTTP_SERVER_EVENT:6 posted to loop 0x3fc9d660
+D (449863) httpd_sess: httpd_sess_process: httpd_req_delete
+D (449883) httpd_sess: httpd_sess_process: success
+D (449883) httpd: httpd_server: doing select maxfd+1 = 58
+D (449893) httpd: httpd_server: processing listen socket 54
+D (449903) httpd: httpd_accept_conn: newfd = 58
+D (449903) httpd_sess: httpd_sess_new: fd = 58
+D (449913) httpd_sess: httpd_sess_new: active sockets: 2
+D (449913) httpd: httpd_accept_conn: complete
+D (449913) httpd: httpd_server: doing select maxfd+1 = 59
+D (449913) event: no handlers have been registered for event ESP_HTTP_SERVER_EVENT:2 posted to loop 0x3fc9d660
+D (454703) httpd: httpd_process_session: processing socket 58
+D (454703) httpd_sess: httpd_sess_process: httpd_req_new
+D (454703) httpd_txrx: httpd_recv_with_opt: requested length = 128
+D (454713) httpd_txrx: httpd_recv_with_opt: received length = 0
+D (454713) httpd_parse: read_block: connection closed
+D (454723) httpd_sess: httpd_sess_delete: fd = 58
+D (454723) event: no handlers have been registered for event ESP_HTTP_SERVER_EVENT:7 posted to loop 0x3fc9d660
+D (454723) httpd_sess: httpd_sess_delete: active sockets: 1
+D (454743) httpd: httpd_server: doing select maxfd+1 = 58

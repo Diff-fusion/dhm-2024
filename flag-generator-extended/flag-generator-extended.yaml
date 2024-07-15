@@ -1,0 +1,35 @@
+name: "flag-generator-extended"
+enabled: true
+multiplier: 1.0
+displayName: "Flag Generator: Extended"
+categories:
+ - "Reverse Engineering"
+ - "Hardware"
+difficulty: "Medium"
+authors:
+ - "Diff-fusion"
+tags: []
+description: |-
+  Note: This challenge uses the same firmware as `Flag Generator: Finite` and `Flag Generator: Riscy`
+
+  Hey, we got our hands on a new flag generator.
+  This one has extra security based on a hardware token.
+
+  The generator is loaded from a file but unfortunately it is encrypted and requires a license key to execute.
+  An undisclosed source send us a decrypted version of an old generator.
+  We hope you can use this to decrypt the new version.
+
+  ## Flashing the Challenge
+  The challenge is already flashed onto the board. If you need to flash it again, here are the instructions:
+  1. Connect to the port labeled `COM` on the ESP32-S3, this will create a new serial device, e.g., `/dev/ttyACM0`
+  2. Flash the firmware with `esptool`: `esptool.py --port /dev/ttyACM0 write_flash 0 flag-generator.bin`
+
+  ## Connecting to the Challenge
+  * The port labeled `COM` allows for read access to the debug log of the device, the output can be read with, e.g., `pyserial-miniterm --raw /dev/ttyACM0 115200`
+  * The port labeled `USB` is used to access the challenge.
+    Connecting to the port will create a new Ethernet interface.
+    It should automatically assign an IP address, otherwise add on with `ip addr add dev <device name> 10.11.12.3`. Get the device name with `ip addr`.
+  You can then find the challenge at [10.11.12.2](http://10.11.12.2/). Have fun!
+
+points: 100
+flag: "DHM{Great you understand Xtensa, now go on and do the other challenges}"

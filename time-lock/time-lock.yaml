@@ -1,0 +1,15 @@
+name: "time-lock"
+enabled: true
+multiplier: 1.0
+displayName: "Time Lock"
+categories:
+ - "Misc"
+difficulty: "Easy"
+authors:
+ - "Diff-fusion"
+tags: []
+description: |-
+  I locked your flag with a time lock. To capture it you have to wait millions of years. **Muhahaha...**
+
+points: 100
+flag: "DHM{h0w_4r3_y0u_s0_f4st_8374012}"

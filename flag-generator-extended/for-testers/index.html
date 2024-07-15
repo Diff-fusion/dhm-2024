@@ -1,0 +1,232 @@
+<!DOCTYPE HTML>
+<head>
+    <meta charset="utf-8">
+    <meta name="color-scheme" content="dark light" />
+
+    <title>Flag Generator</title>
+    <link rel="stylesheet" href="simple.min.css">
+    <script src="sha256.min.js" charset="utf-8"></script>
+</head>
+<body>
+    <div>
+        <h1>Flag Generator</h1>
+        <span>Here you can generate some Flags!</span>
+        <h3>Load Generator</h3>
+        <div>
+            Select a generator file.
+            <input type="file" id="generator-selector">
+        </div>
+        <div id="generator-key-entry" style="display: none;">
+            <span>A license key is required for this generator. Please enter the key:</span>
+            <input type="text" name="generator-key" id="generator-key" value="">
+            <input type="button" name="generator-key-submit" id="generator-key-submit" value="Confirm">
+        </div>
+        <h3>Run Generator</h3>
+        <div id="generator-not-loaded">
+            <p>No generator loaded</p>
+        </div>
+        <div id="generator-loaded" style="display: none;">
+            <h5 id="generator-name">Generator Name</h5>
+            <input type="button" name="generator-run" id="generator-run" value="Run Generator">
+            <h5>Description</h5>
+            <p id="generator-description">Description</p>
+            <h5>Result</h5>
+            <p id="generator-result" style="white-space: nowrap;"></p>
+        </div>
+        <div id="errors">
+            <p class="notice" id="error-msg" style="display: none;"></p>
+        </div>
+    </div>
+
+    <script>
+        function waitListener(element, listenerName) {
+            return new Promise(function (resolve, reject) {
+                var listener = event => {
+                    element.removeEventListener(listenerName, listener);
+                    resolve(event);
+                };
+                element.addEventListener(listenerName, listener);
+            });
+        }
+
+        const errors_tag = document.getElementById("errors");
+        function error(msg) {
+            let tag = document.createElement("p");
+            tag.setAttribute("class", "notice");
+            tag.innerHTML = msg
+            errors_tag.appendChild(tag);
+            setTimeout(() => {
+                tag.remove();
+            }, 2000);
+            console.log(msg);
+        }
+
+        const not_loaded_tag = document.getElementById("generator-not-loaded");
+        const loaded_tag = document.getElementById("generator-loaded");
+        const name_tag = document.getElementById("generator-name");
+        const description_tag = document.getElementById("generator-description");
+        const result_tag = document.getElementById("generator-result");
+        function clearGenerator() {
+            delete generator;
+            not_loaded_tag.style = "";
+            loaded_tag.style = "display: none;";
+            name_tag.innerHTML = "";
+            description_tag.innerHTML = "";
+            result_tag.innerHTML = "";
+        }
+
+        function setGenerator(name, description) {
+            not_loaded_tag.style = "display: none;";
+            loaded_tag.style = "";
+            name_tag.innerHTML = generator.name;
+            description_tag.innerHTML = generator.description;
+            result_tag.innerHTML = "";
+        }
+
+        function runGenerator() {
+            result_tag.innerHTML = generator.function();
+        }
+        document.getElementById("generator-run").addEventListener("click", runGenerator);
+
+        function loadFileHeader(data) {
+            let enc_file = {};
+            let elements = new Int32Array(data.slice(0, 8));
+            let magic = elements[0];
+            if (magic != 0x454c4946) {
+                return;
+            }
+            enc_file.type = elements[1];
+            enc_file.digest = new Uint8Array(data.slice(8, 40));
+            enc_file.IV = new Uint8Array(data.slice(40, 56));
+            enc_file.enc_data = data.slice(56);
+            return enc_file;
+        }
+
+        function loadGeneratorHeader(data) {
+            let generator = {};
+            let elements = new Int32Array(data.slice(0, 4));
+            let magic = elements[0];
+            if (magic != 0x54524e47) {
+                return;
+            }
+            let decoder = new TextDecoder();
+            generator.name = decoder.decode(data.slice(4, 24));
+            generator.description = decoder.decode(data.slice(24, 124));
+            generator.content = decoder.decode(data.slice(124));
+            return generator;
+        }
+
+        function checkGenerator(file, content) {
+            let digest = sha256.digest(content);
+
+            for (i = 0; i < 32; i++) {
+                if (digest[i] != file.digest[i]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        async function decrypt(enc_type, key, IV, data) {
+            const iv = btoa(String.fromCharCode(...IV));
+            let response = await fetch("/decrypt?" + new URLSearchParams({
+                type: enc_type,
+                key: key,
+                iv: iv,
+            }), {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/octet-stream",
+                },
+                body: data,
+            });
+            return response.arrayBuffer();
+        }
+
+        async function getKey() {
+            const entry = document.getElementById("generator-key-entry");
+            const button = document.getElementById("generator-key-submit");
+            const text = document.getElementById("generator-key");
+            entry.style = "";
+
+            let key;
+            while (true) {
+                await waitListener(button, "click");
+                key = text.value;
+                let dec;
+                try {
+                    dec = atob(key);
+                } catch (InvalidCharacterError) {
+                    error("Invalid key");
+                    continue;
+                }
+                if (dec.length != 16) {
+                    error("Invalid key");
+                    continue;
+                }
+                break;
+            }
+
+            entry.style = "display: none;";
+            text.value = "";
+            return key;
+        }
+
+
+function buf2hex(buffer) {
+  return [...new Uint8Array(buffer)]
+      .map(x => x.toString(16).padStart(2, '0'))
+      .join('');
+}
+        var generator;
+        async function generatorChange(event) {
+            clearGenerator();
+            const file = event.target.files[0];
+            const buf = await file.arrayBuffer();
+            const enc_file = loadFileHeader(buf);
+            if (enc_file === undefined) {
+                error("Not a generator file: invalid file header");
+                return;
+            }
+            let dec_data;
+            let key;
+            switch (enc_file.type) {
+                case 0:
+                    dec_data = enc_file.enc_data;
+                    break;
+                case 1:
+                    key = await getKey();
+                    dec_data = await decrypt("extended", key, enc_file.IV, enc_file.enc_data);
+                    break;
+                case 2:
+                    key = await getKey();
+                    dec_data = await decrypt("finite", key, enc_file.IV, enc_file.enc_data);
+                    break;
+                case 3:
+                    key = await getKey();
+                    dec_data = await decrypt("riscy", key, enc_file.IV, enc_file.enc_data);
+                    break;
+                default:
+                    error("Not a generator file: invalid encryption type");
+                    return;
+            }
+            const hex_content = buf2hex(dec_data);
+            console.log(`Decrypted content ${hex_content}`);
+
+            generator = loadGeneratorHeader(dec_data);
+            if (generator === undefined) {
+                error("Invalid key")
+                return;
+            }
+            if (!checkGenerator(enc_file, generator.content)) {
+                error("Invalid generator digest. Is the key correct?")
+                return;
+            }
+            generator.function = Function(generator.content);
+            setGenerator();
+        }
+
+        const generatorSelector = document.getElementById('generator-selector');
+        generatorSelector.addEventListener('change', generatorChange);
+    </script>
+</body>
